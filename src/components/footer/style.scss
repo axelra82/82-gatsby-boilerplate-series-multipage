@@ -1,0 +1,16 @@
+@import "../../style/style";
+
+#main-footer {
+	background: $color-primary;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
+	a {
+		color: lighten($color-primary, 30);
+		&:hover {
+			color: $black !important;
+		}
+	}
+}

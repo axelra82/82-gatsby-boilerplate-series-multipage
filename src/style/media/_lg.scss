@@ -1,0 +1,24 @@
+@media only screen and (min-width: 1280px) {
+	html,
+	body {
+		font-size: 1.375vw;
+	}
+
+	// Images in landing page
+	section[current="/"] {
+		// Exclude images from the carousel
+		:not(.carousel > img) img {
+			width: 50%;
+			float: left;
+			margin: 0 2rem 2rem 0;
+		}
+	}
+
+	#main-navigation {
+		nav.container {
+			ul.nav {
+				flex-wrap: nowrap !important;
+			}
+		}
+	}
+}

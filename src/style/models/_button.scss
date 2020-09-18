@@ -1,0 +1,19 @@
+button:not(:disabled):not(.disabled) {
+	cursor: pointer;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: 0.25rem;
+	transition: all 350ms;
+	color: $white;
+	background: $primary;
+	border: none;
+
+	&[variant="primary"] {
+		background: $color-primary !important;
+	}
+	&[block="true"] {
+		display: block !important;
+		width: 100%;
+	}
+}

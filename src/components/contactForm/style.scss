@@ -1,0 +1,137 @@
+@import "../../style/colors";
+@import "../../style/easing-types";
+
+$transitionDuration: 500ms;
+$transitionTimingOut: cubic-bezier($easeOutQuad);
+$transitionTimingIn: cubic-bezier($easeInQuad);
+
+#contact-form {
+	input,
+	textarea {
+		&[aria-invalid="true"] {
+			border-color: $danger !important;
+			border-left-color: rgba($danger, 0.8) !important;
+			background-color: rgba($danger, 0.1) !important;
+			border-left-width: 0.75rem !important;
+			animation: shake 750ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+			transform: translate3d(0, 0, 0);
+			will-change: transform;
+			transition: all 350ms;
+
+			@keyframes shake {
+				10%,
+				90% {
+					transform: translateX(-2px);
+				}
+
+				20%,
+				80% {
+					transform: translateX(5px);
+				}
+
+				30%,
+				50%,
+				70% {
+					transform: translateX(-10px);
+				}
+
+				40%,
+				60% {
+					transform: translateX(10px);
+				}
+			}
+		}
+	}
+
+	.card {
+		z-index: 1;
+		opacity: 1;
+		transform-origin: bottom center;
+		transform: perspective(0rem) translateY(0) rotateX(0deg);
+		transition-timing-function: $transitionTimingOut;
+		transition: all $transitionDuration;
+
+		&.hide {
+			opacity: 0;
+			transform: perspective(50rem) translateY(-15rem) rotateX(30deg);
+		}
+
+		&.show {
+			opacity: 1;
+			transform: perspective(0) translateY(0) rotateX(0deg);
+		}
+	}
+
+	.processing {
+		text-align: center;
+		.message {
+			display: inline-block;
+			border: 1px solid rgba($black, 0.5);
+			border-radius: 0.25rem;
+			padding: 0.5rem 0.75rem;
+		}
+		.pulsDot {
+			display: block;
+			margin: 2rem auto;
+			width: 2rem;
+			height: 2rem;
+			border-radius: 100%;
+			background: $primary;
+			transform-origin: center center;
+			animation: pulse 1.75s infinite cubic-bezier(0.66, 0, 0, 1);
+
+			@keyframes pulse {
+				0% {
+					box-shadow: 0 0 0 0 rgba($primary, 0.7);
+					transform: scale(1);
+				}
+				50% {
+					box-shadow: 0 0 0 1rem rgba($primary, 0);
+					transform: scale(0.95);
+				}
+				100% {
+					box-shadow: 0 0 0 0 rgba($primary, 0);
+					transform: scale(1);
+				}
+			}
+		}
+	}
+
+	.form-success-message,
+	.form-danger-message {
+		position: absolute;
+		width: 100%;
+		padding: 2rem 1rem;
+		border: 1px solid;
+		z-index: 2;
+		opacity: 0;
+		transform: perspective(50rem) translateY(-15%) rotateX(30deg);
+		transform-origin: top center;
+		animation: showMessage $transitionDuration $transitionDuration/2 forwards;
+		transition-timing-function: $transitionTimingIn;
+		animation-timing-function: $transitionTimingIn;
+		transition: all $transitionDuration;
+		border-radius: 0.25rem;
+
+		@keyframes showMessage {
+			to {
+				opacity: 1;
+				transform: perspective(0rem) translateY(0%) rotateX(0deg);
+			}
+		}
+	}
+
+	.form-success-message {
+		border-color: $success;
+		background: lighten($success, 50);
+	}
+
+	.form-danger-message {
+		border-color: $danger;
+		background: lighten($danger, 30);
+
+		a {
+			color: $danger;
+		}
+	}
+}
